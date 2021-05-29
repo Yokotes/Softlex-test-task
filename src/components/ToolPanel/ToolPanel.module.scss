@@ -1,0 +1,25 @@
+@import "../../shared/variables";
+.toolPanel {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid $borderColor;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.sorts {
+  display: flex;
+}
+
+.btns {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  border-left: 1px solid $borderColor;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+.sortSelect {
+  margin-right: 20px;
+}

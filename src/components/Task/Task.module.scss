@@ -1,0 +1,42 @@
+@import "../../shared/variables";
+
+.task {
+  box-shadow: $shadow;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid $borderColor;
+}
+
+.block {
+  padding: 10px 25px;
+  padding-bottom: 25px;
+  border-left: 1px solid $borderColor;
+
+  &:first-child {
+    border-left: none;
+  }
+}
+
+.label {
+  font-family: $secondFont;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.content {
+  font-family: $mainFont;
+}
+
+.text {
+  flex-grow: 1;
+
+  & > p {
+    opacity: 0.5;
+  }
+}
+
+.status {
+  font-weight: 600;
+  opacity: 0.45;
+}

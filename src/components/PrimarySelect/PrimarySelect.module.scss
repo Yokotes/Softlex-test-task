@@ -1,0 +1,20 @@
+@import "../../shared/variables";
+
+.select {
+  padding: 10px 10px;
+  border-color: $borderColor;
+  border-radius: 5px;
+  box-shadow: $shadow;
+  font-family: $mainFont;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.label {
+  font-family: $secondFont;
+  font-size: 0.875rem;
+  margin-right: 10px;
+}
