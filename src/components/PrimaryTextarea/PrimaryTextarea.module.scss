@@ -1,0 +1,25 @@
+@import "../../shared/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-family: $secondFont;
+  margin-bottom: 5px;
+}
+
+.area {
+  border: 1px solid $borderColor;
+  box-shadow: $shadow;
+  padding: 5px 8px;
+  font-family: $mainFont;
+  font-size: 1rem;
+  border-radius: 5px;
+  resize: none;
+
+  &:focus {
+    outline: none;
+  }
+}

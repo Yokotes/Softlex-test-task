@@ -1,37 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTasks } from '../../controllers/tasksController';
+import { RootState } from '../../models/store';
 import Pagination from '../Pagination/Pagination';
 import Task, { TaskProps } from '../Task/Task';
 import styles from './TasksContainer.module.scss';
 
 const TasksContainer = () => {
-  const tasks: TaskProps[] = [
-    {
-      id: 1,
-      username: "admin",
-      email: "main@mail.com",
-      text: "Test task",
-      status: 10
-    }
-  ];
+  const dispatch = useDispatch();
+  const tasksState: {
+    tasks: TaskProps[],
+    totalTaskCount: number
+  } = useSelector((state: RootState) => state.tasks);
 
+  useEffect(() => {
+    dispatch(fetchTasks())
+  }, [dispatch,])
+  
   return (
     <div className={styles.container}>
       <div className={styles.tasks}>
         {
-          tasks.map(task => (
-            <Task 
-              key={task.id}
-              id={task.id}
-              username={task.username}
-              email={task.email}
-              text={task.text}
-              status={task.status}
-            />
-          ))
+          tasksState.tasks.length > 0 ? (
+            tasksState.tasks.map(task => (
+              <Task 
+                key={task.id}
+                id={task.id}
+                username={task.username}
+                email={task.email}
+                text={task.text}
+                status={task.status}
+              />
+            ))
+          ) : (
+            <div className={styles.noTasks}>
+              There is no tasks
+            </div>
+          )
         }
       </div>
       <Pagination 
-        totalCount={5}
+        totalCount={tasksState.totalTaskCount}
       />
     </div>
   )

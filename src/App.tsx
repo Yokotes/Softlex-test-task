@@ -5,6 +5,8 @@ import HomePage from './containers/HomePage/HomePage';
 import { Provider } from 'react-redux';
 import store from './models/store';
 import LoginPage from './containers/LoginPage/LoginPage';
+import TaskModal from './modals/TaskModal/TaskModal';
+import Copyright from './components/Copyright/Copyright';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
               <LoginPage />
             </Route>
           </Switch>
+          <TaskModal />
+          <Copyright />
         </div>
       </BrowserRouter>
     </Provider>

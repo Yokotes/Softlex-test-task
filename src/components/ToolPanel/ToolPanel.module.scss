@@ -9,6 +9,7 @@
 
 .sorts {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .btns {
@@ -22,4 +23,10 @@
 
 .sortSelect {
   margin-right: 20px;
+}
+
+@media (max-width: 752px) {
+  .sortSelect {
+    margin-bottom: 20px;
+  }
 }

@@ -1,0 +1,68 @@
+@import "../../shared/variables";
+
+.modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  max-width: 500px;
+  height: fit-content;
+  margin: auto;
+  box-shadow: $shadow;
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 30px;
+}
+
+.show {
+  display: block;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  width: 33px;
+  height: 33px;
+  z-index: 2;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.title {
+  font-family: $mainFont;
+  font-weight: 500;
+  opacity: 0.5;
+  margin-bottom: 40px;
+}
+
+.input {
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.area {
+  margin-top: 50px;
+
+  & > textarea {
+    height: 100px;
+  }
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+}

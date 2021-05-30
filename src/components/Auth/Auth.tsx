@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../models/store';
-import { tryAuth } from '../../controllers/authController';
+import { signOut, tryAuth } from '../../controllers/authController';
 import styles from './Auth.module.scss';
 import PrimaryBtn from '../PrimaryBtn/PrimaryBtn';
 
@@ -22,8 +22,9 @@ const Auth = () => {
         <strong>{user.username}</strong>
         <PrimaryBtn
           className={styles.btn}
+          onClick={() => dispatch(signOut())}
         >
-          Sign out
+          Выйти
         </PrimaryBtn>
       </div>
     ) : (

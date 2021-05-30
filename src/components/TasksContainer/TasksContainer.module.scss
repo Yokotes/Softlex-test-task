@@ -2,4 +2,12 @@
 
 .tasks {
   margin-bottom: 70px;
+
+  & > * {
+    margin-bottom: 20px;
+  }
+}
+
+.noTasks {
+  font-family: $secondFont;
 }

@@ -6,13 +6,15 @@ type PrimarySelectProps = {
   id: string;
   options: string[];
   className?: string;
+  onChange?:(e: React.ChangeEvent) => void;
 }
 
 const PrimarySelect = ({ 
   options,
   label,
   id,
-  className = ""
+  className = "",
+  onChange
 }: PrimarySelectProps) => {
   return (
     <div className={`${styles.container} ${className}`}>
@@ -25,6 +27,7 @@ const PrimarySelect = ({
       <select
         id={id} 
         className={styles.select}
+        onChange={onChange}
       >
         {
           options.map((option, index) => (

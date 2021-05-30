@@ -1,6 +1,7 @@
 import axios from "axios";
 import { setToken, setUsername } from "../models/slices/authSlice";
 import { AppDispatch } from "../models/store";
+import { clearInputs } from "../shared/formHelper";
 import { apiLink, developer  } from '../shared/links.json';
 
 const login = (e: React.FormEvent) => async (dispatch: AppDispatch) => {
@@ -10,7 +11,7 @@ const login = (e: React.FormEvent) => async (dispatch: AppDispatch) => {
   const data = new FormData(form);
 
   const response = await axios.post(
-    apiLink+"/login/"+developer,
+    apiLink+"/login"+developer,
     data
   );
 
@@ -26,7 +27,6 @@ const login = (e: React.FormEvent) => async (dispatch: AppDispatch) => {
   dispatch(setUsername("admin"));
 
   window.location.href = "/";
-  console.log(responseData.message.token)
   document.cookie = `token=${responseData.message.token}; max-age=${60*60*24}; secure`
   clearInputs(form);
 }
@@ -40,15 +40,16 @@ const tryAuth = () => (dispatch: AppDispatch) => {
   }
 }
 
-export {
-  login,
-  tryAuth
+const signOut = () => (dispatch: AppDispatch) => {
+  document.cookie = `token= ; max-age=${60*60*24}; secure`;
+  dispatch(setToken(""));
+  dispatch(setUsername(""));
 }
 
-const clearInputs = (form: HTMLFormElement) => {
-  const inputs = form.querySelectorAll("input");
-
-  inputs.forEach(input => input.value = "");
+export {
+  login,
+  tryAuth,
+  signOut
 }
 
 function getCookie(name: string) {

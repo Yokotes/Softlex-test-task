@@ -6,8 +6,11 @@ type PrimaryInputProps = {
   className?: string;
   label: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isPassword?: boolean,
-  name?: string,
+  type?: 'text' | 'password' | 'email';
+  name?: string;
+  required?: boolean;
+  defaultValue?: string;
+  disabled?:boolean;
 }
 
 const PrimaryInput = ({
@@ -15,8 +18,11 @@ const PrimaryInput = ({
   label,
   className = "",
   onChange,
-  isPassword = false,
-  name
+  type = 'text',
+  name = "",
+  required = false,
+  defaultValue = "",
+  disabled = false,
 }: PrimaryInputProps) => {
   return (
     <div className={`${styles.container} ${className}`}>
@@ -24,10 +30,13 @@ const PrimaryInput = ({
         {label}
       </label>
       <input 
-        type={isPassword ? 'password': 'text'} 
+        type={type} 
         className={styles.input}
         id={id}
         name={name}
+        required={required}
+        defaultValue={defaultValue}
+        disabled={disabled}
       />
     </div>
   )

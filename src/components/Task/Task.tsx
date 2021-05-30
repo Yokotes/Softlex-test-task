@@ -1,4 +1,9 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { showTaskModalInEdit } from '../../controllers/modalController';
+import { changeStatus } from '../../controllers/tasksController';
+import { RootState } from '../../models/store';
+import PrimaryBtn from '../PrimaryBtn/PrimaryBtn';
 import styles from './Task.module.scss';
 
 export type TaskProps = {
@@ -16,6 +21,25 @@ const Task = ({
   text,
   status
 }: TaskProps) => {
+  let statusValue = '';
+  const user = useSelector((state: RootState) => state.auth.profile);
+  const dispatch = useDispatch();
+
+  switch(status) {
+    case 0:
+      statusValue = "Не выполнено";
+      break;
+    case 1:
+      statusValue = "Не выполнено, отредактировано";
+      break;
+    case 10:
+      statusValue = "Выполнено";
+      break;
+    case 11:
+      statusValue = "Выполнено, отредактировано";
+      break;
+  }
+
   return (
     <div className={styles.task}>
       <div className={styles.block}>
@@ -26,7 +50,7 @@ const Task = ({
           {username}
         </div>
       </div>
-      <div className={styles.block}>
+      <div className={`${styles.block} ${styles.email}`}>
         <div className={styles.label}>
           E-mail
         </div>
@@ -41,13 +65,36 @@ const Task = ({
         <p className={styles.content}>
           {text}
         </p>
+        {
+          user.token ? (
+            <PrimaryBtn
+              className={styles.btn}
+              onClick={() => dispatch(showTaskModalInEdit(id))}
+            >
+              Изменить
+            </PrimaryBtn>
+          ) : (
+            ""
+          )
+        }
       </div>
-      <div className={styles.block}>
+      <div className={`${styles.block} ${styles.statusBlock}`}>
         <div className={styles.label}>
           Статус
         </div>
         <div className={`${styles.content} ${styles.status}`}>
-          {status >= 10 ? 'Completed': 'In work'}
+          {
+            user.token ? (
+              <input 
+                type="checkbox"
+                className={styles.check}
+                checked={status >= 10 ? true: false}
+                onChange={() => dispatch(changeStatus(id, status))}
+              />
+            ) : (
+              statusValue
+            )
+          }
         </div>
       </div>
     </div>

@@ -18,19 +18,19 @@ const LoginPage = () => {
         >
           <>
             <h2 className={styles.title}>
-              Sign In
+              Войти
             </h2>
             <PrimaryInput 
               id="login-username"
-              label="Username: "
+              label="Имя пользователя: "
               className={styles.input}
               name="username"
             />
             <PrimaryInput 
               id="login-password"
-              label="Password: "
+              label="Пароль: "
               className={styles.input}
-              isPassword={true}
+              type='password'
               name="password"
             />
             <PrimaryBtn
