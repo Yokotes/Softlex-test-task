@@ -25,6 +25,7 @@ const Task = ({
   const user = useSelector((state: RootState) => state.auth.profile);
   const dispatch = useDispatch();
 
+  // Form status string from number
   switch(status) {
     case 0:
       statusValue = "Не выполнено";
